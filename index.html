@@ -4,41 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elite Track Athletics Academy</title>
+    
+    <!-- Google Fonts for Modern Look -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        /* --- CSS STYLES (DESIGN) --- */
+        /* --- CSS STYLES (MODERN DESIGN) --- */
         :root {
             --primary-gold: #D4AF37;
-            --dark-bg: #121212;
+            --primary-gold-hover: #F2C94C;
+            --dark-bg: #0a0a0a;
+            --card-bg: #161616;
             --light-text: #f4f4f4;
-            --grey-bg: #1e1e1e;
+            --grey-text: #b0b0b0;
+            --glass-bg: rgba(10, 10, 10, 0.9);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Outfit', sans-serif; /* Modern Font */
             scroll-behavior: smooth;
         }
 
         body {
             background-color: var(--dark-bg);
             color: var(--light-text);
-            line-height: 1.6;
+            line-height: 1.7;
+            overflow-x: hidden;
         }
 
-        /* HEADER */
+        /* --- ANIMATIONS --- */
+        /* Scroll Reveal Class */
+        .reveal {
+            position: relative;
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+        .reveal.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* --- HEADER & NAV --- */
         header {
-            background-color: rgba(0, 0, 0, 0.95);
-            padding: 15px 20px;
+            background-color: var(--glass-bg);
+            backdrop-filter: blur(10px); /* Glass Effect */
+            padding: 15px 5%;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            border-bottom: 2px solid var(--primary-gold);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: 0.3s;
         }
 
         .logo {
@@ -49,28 +74,52 @@
             letter-spacing: 1px;
         }
 
-        nav a {
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a {
             color: white;
             text-decoration: none;
-            margin-left: 20px;
-            font-size: 0.9rem;
-            transition: 0.3s;
+            font-size: 0.95rem;
             font-weight: 500;
+            transition: 0.3s;
         }
 
-        nav a.highlight {
-            color: var(--primary-gold);
+        .nav-links a:hover { color: var(--primary-gold); }
+
+        .highlight {
+            color: var(--primary-gold) !important;
             border: 1px solid var(--primary-gold);
-            padding: 5px 10px;
-            border-radius: 4px;
+            padding: 8px 18px;
+            border-radius: 50px;
+            background: transparent;
         }
 
-        /* HERO SECTION */
+        .highlight:hover {
+            background: var(--primary-gold);
+            color: black !important;
+        }
+
+        /* Mobile Menu Button */
+        .menu-toggle {
+            display: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- HERO SECTION --- */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(10,10,10,1)), 
+                        url('https://images.unsplash.com/photo-1552674605-5d226a5be380?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed; /* Parallax */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -79,127 +128,259 @@
             padding: 20px;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            line-height: 1.2;
+        .hero div[style*="background: var(--primary-gold)"] {
+            /* Preserving user style but tweaking spacing */
+            margin-bottom: 25px; 
+            backdrop-filter: blur(5px);
         }
 
-        .hero span { color: var(--primary-gold); }
-        .hero h3 { font-size: 1.2rem; letter-spacing: 3px; margin-bottom: 20px; color: #ccc; }
+        .hero h1 {
+            font-size: 3.8rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            line-height: 1.1;
+            font-weight: 800;
+        }
+
+        .hero span { 
+            color: var(--primary-gold); 
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        .hero h3 { 
+            font-size: 1.3rem; 
+            letter-spacing: 3px; 
+            margin-bottom: 30px; 
+            color: #ccc; 
+        }
 
         .btn {
             background-color: var(--primary-gold);
             color: black;
-            padding: 12px 30px;
+            padding: 14px 40px;
             text-decoration: none;
             font-weight: bold;
-            border-radius: 5px;
+            border-radius: 50px;
             text-transform: uppercase;
+            letter-spacing: 1px;
             transition: 0.3s;
             display: inline-block;
-            margin-top: 10px;
             cursor: pointer;
             border: none;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
         }
-        .btn:hover { background-color: white; transform: scale(1.05); }
+        .btn:hover { 
+            background-color: white; 
+            transform: translateY(-3px); 
+            box-shadow: 0 10px 20px rgba(255,255,255,0.2);
+        }
 
-        /* SECTIONS GENERAL */
+        /* --- SECTIONS GENERAL --- */
         section {
-            padding: 60px 20px;
+            padding: 80px 20px;
             max-width: 1100px;
             margin: auto;
         }
 
         h2 {
             text-align: center;
-            font-size: 2.2rem;
-            margin-bottom: 40px;
-            color: var(--primary-gold);
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--light-text);
             text-transform: uppercase;
+            position: relative;
             display: inline-block;
-            border-bottom: 2px solid #333;
-            padding-bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
         }
-        .center-heading { text-align: center; width: 100%; }
+        /* Gold underline for headings */
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-gold);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
 
-        /* ABOUT SECTION */
-        .about-container { display: flex; flex-wrap: wrap; align-items: center; gap: 40px; }
-        .about-img img { width: 100%; border-radius: 10px; border: 2px solid var(--primary-gold); }
-        .about-img, .about-text { flex: 1; min-width: 300px; }
-
-        /* WHY CHOOSE US (NEW) */
+        /* --- FEATURES GRID --- */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
             text-align: center;
         }
-        .feature-item {
-            background: #1a1a1a;
-            padding: 20px;
-            border-radius: 10px;
-            transition: 0.3s;
-        }
-        .feature-item:hover { transform: translateY(-5px); background: #222; }
-        .feature-icon { font-size: 2.5rem; margin-bottom: 10px; display: block; }
 
-        /* ONLINE PLANS SECTION */
-        #online { background-color: #151515; padding-bottom: 80px; }
-        .plans-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 30px; }
+        .feature-item {
+            background: var(--card-bg);
+            padding: 30px 20px;
+            border-radius: 15px;
+            transition: 0.3s;
+            border: 1px solid #222;
+        }
+        .feature-item:hover { 
+            transform: translateY(-10px); 
+            border-color: var(--primary-gold);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        /* Using FontAwesome Icons inside user's structure via ::before would be complex, 
+           so we style the span directly */
+        .feature-icon { 
+            font-size: 3rem; 
+            margin-bottom: 15px; 
+            display: block; 
+            color: var(--primary-gold);
+        }
+
+        /* --- ABOUT SECTION --- */
+        .about-container { 
+            display: flex; 
+            flex-wrap: wrap; 
+            align-items: center; 
+            gap: 50px; 
+        }
+        
+        .about-img { flex: 1; min-width: 300px; }
+        .about-img img { 
+            width: 100%; 
+            border-radius: 15px; 
+            box-shadow: 20px 20px 0px rgba(212, 175, 55, 0.1); 
+        }
+        
+        .about-text { flex: 1; min-width: 300px; }
+        .about-text p { margin-bottom: 20px; color: var(--grey-text); font-size: 1.05rem; }
+
+        /* --- ONLINE PLANS SECTION --- */
+        #online { background-color: #0e0e0e; padding-bottom: 80px; max-width: 100%; width: 100%; }
+        .plans-container { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 30px; 
+            margin-top: 30px; 
+            max-width: 1200px;
+            margin: 30px auto 0;
+        }
         
         .plan-card {
-            background-color: #000;
+            background-color: var(--card-bg);
             border: 1px solid #333;
-            border-radius: 10px;
+            border-radius: 20px;
             width: 350px;
-            padding: 30px;
+            padding: 40px;
             text-align: left;
             position: relative;
             transition: 0.3s;
         }
+        .plan-card:hover { transform: translateY(-10px); }
+
         .plan-card.premium {
             border: 2px solid var(--primary-gold);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
-            transform: scale(1.02);
+            background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
         }
         .reco-badge {
             position: absolute; top: -12px; right: 20px;
             background-color: var(--primary-gold); color: black;
-            font-size: 0.8rem; padding: 4px 10px; border-radius: 4px; font-weight: bold;
+            font-size: 0.75rem; padding: 5px 12px; border-radius: 20px; font-weight: bold;
+            text-transform: uppercase;
         }
-        .features-list { list-style: none; margin: 20px 0 30px 0; }
-        .features-list li { margin-bottom: 12px; display: flex; align-items: center; }
-        .features-list li::before { content: "✅"; margin-right: 10px; font-size: 0.9rem; }
-        .features-list li.limit::before { content: "⚠️"; }
 
-        /* REVIEWS / TESTIMONIALS (NEW) */
+        .features-list { list-style: none; margin: 25px 0 35px 0; }
+        .features-list li { margin-bottom: 12px; display: flex; align-items: center; color: #ddd; }
+        /* Using ::before for checkmark to avoid changing HTML text */
+        .features-list li::before { 
+            content: '\f00c'; 
+            font-family: "Font Awesome 6 Free"; 
+            font-weight: 900; 
+            color: var(--primary-gold); 
+            margin-right: 15px; 
+        }
+        .features-list li.limit::before { content: '\f071'; color: #777; }
+
+        .plan-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            text-align: center;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* --- REVIEWS --- */
         .reviews-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 25px;
             justify-content: center;
         }
         .review-card {
             background: #1e1e1e;
-            padding: 25px;
-            border-radius: 10px;
-            width: 300px;
+            padding: 30px;
+            border-radius: 15px;
+            width: 320px;
             border-left: 4px solid var(--primary-gold);
+            transition: 0.3s;
         }
-        .review-text { font-style: italic; color: #ccc; font-size: 0.95rem; }
-        .athlete-name { margin-top: 15px; font-weight: bold; color: var(--primary-gold); display: block; }
+        .review-card:hover { background: #252525; }
+        .review-text { font-style: italic; color: #ccc; margin-bottom: 20px; }
+        .athlete-name { font-weight: bold; color: var(--primary-gold); display: block; }
 
-        /* CONTACT SECTION */
-        .contact { text-align: center; background-color: #000; padding: 50px 20px; }
-        .phone-number { font-size: 2rem; font-weight: bold; color: var(--primary-gold); display: block; margin-top: 10px; }
-        footer { text-align: center; padding: 20px; background-color: #000; color: #777; border-top: 1px solid #333; }
+        /* --- CONTACT SECTION --- */
+        .contact { 
+            text-align: center; 
+            background-color: #000; 
+            padding: 80px 20px; 
+            max-width: 100%;
+        }
+        .contact-box {
+            display: inline-block;
+            padding: 40px;
+            border: 2px solid var(--primary-gold);
+            border-radius: 20px;
+            background: #111;
+        }
+        .phone-number { 
+            font-size: 2.2rem; 
+            font-weight: bold; 
+            color: var(--primary-gold); 
+            display: block; 
+            margin: 15px 0 25px; 
+        }
 
+        footer { 
+            text-align: center; 
+            padding: 30px; 
+            background-color: #050505; 
+            color: #777; 
+            border-top: 1px solid #222; 
+        }
+
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            nav { display: none; }
-            .plan-card { width: 100%; transform: none !important; }
+            .hero h1 { font-size: 2.5rem; }
+            .menu-toggle { display: block; z-index: 1001; }
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: #111;
+                flex-direction: column;
+                justify-content: center;
+                transition: 0.4s;
+                box-shadow: -5px 0 20px rgba(0,0,0,0.8);
+            }
+            .nav-links.active { right: 0; }
+            .plan-card { width: 100%; transform: none !important; margin-bottom: 20px; }
+            .about-container { flex-direction: column-reverse; }
         }
     </style>
 </head>
@@ -207,49 +388,53 @@
 
     <header>
         <div class="logo">Elite Track Academy</div>
+        <div class="menu-toggle" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>
         <nav>
-            <a href="#about">About</a>
-            <a href="#online" class="highlight">Online Plans</a>
-            <a href="#reviews">Reviews</a>
-            <a href="#contact">Contact</a>
+            <ul class="nav-links">
+                <li><a href="#about" onclick="toggleMenu()">About</a></li>
+                <li><a href="#online" class="highlight" onclick="toggleMenu()">Online Plans</a></li>
+                <li><a href="#reviews" onclick="toggleMenu()">Reviews</a></li>
+                <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+            </ul>
         </nav>
     </header>
 
     <section class="hero">
-        <div style="background: var(--primary-gold); color: black; padding: 5px 15px; border-radius: 20px; font-weight: bold; margin-bottom: 20px; display: inline-block;">🔴 ADMISSIONS OPEN 2025</div>
+        <div style="background: var(--primary-gold); color: black; padding: 5px 15px; border-radius: 20px; font-weight: bold; display: inline-block;">🔴 ADMISSIONS OPEN 2025</div>
         <h1>Elite Track<br><span>Athletics Academy</span></h1>
         <h3>100m • 200m • 1500m • JUMPS</h3>
         <a href="#online" class="btn">Start Training</a>
     </section>
 
-    <section>
-        <div class="center-heading"><h2>Why Choose Us?</h2></div>
+    <section class="reveal">
+        <div class="center-heading" style="text-align: center;"><h2>Why Choose Us?</h2></div>
         <div class="features-grid">
             <div class="feature-item">
-                <span class="feature-icon">⚡</span>
+                <!-- FontAwesome Icon Replacement -->
+                <span class="feature-icon"><i class="fa-solid fa-bolt"></i></span>
                 <h3>Scientific Training</h3>
                 <p>Advanced workout plans based on biomechanics.</p>
             </div>
             <div class="feature-item">
-                <span class="feature-icon">🛡️</span>
+                <span class="feature-icon"><i class="fa-solid fa-user-shield"></i></span>
                 <h3>Injury Prevention</h3>
                 <p>Focus on recovery and correct technique.</p>
             </div>
             <div class="feature-item">
-                <span class="feature-icon">📈</span>
+                <span class="feature-icon"><i class="fa-solid fa-chart-line"></i></span>
                 <h3>Proven Results</h3>
                 <p>Helping athletes reach State & National levels.</p>
             </div>
             <div class="feature-item">
-                <span class="feature-icon">💪</span>
+                <span class="feature-icon"><i class="fa-solid fa-dumbbell"></i></span>
                 <h3>Gym & Diet</h3>
                 <p>Complete strength and nutrition guidance.</p>
             </div>
         </div>
     </section>
 
-    <section id="about">
-        <div class="center-heading"><h2>About Coach Bhupendra</h2></div>
+    <section id="about" class="reveal">
+        <div class="center-heading" style="text-align: center;"><h2>About Coach Bhupendra</h2></div>
         <div class="about-container">
             <div class="about-img">
                 <img src="https://images.unsplash.com/photo-1552674605-5d226a5be380?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Coach">
@@ -264,7 +449,7 @@
     </section>
 
     <section id="online">
-        <div class="center-heading">
+        <div class="center-heading" style="text-align: center; max-width: 1100px; margin: auto;">
             <h2>🌍 Online Training Plans</h2>
             <p>Train with Coach Bhupendra from anywhere via Mobile.</p>
         </div>
@@ -280,7 +465,8 @@
                     <li>Weekly Progress Meeting.</li>
                     <li>Custom Diet Plan included.</li>
                 </ul>
-                <a href="https://wa.me/918218377572?text=I%20am%20interested%20in%20Personal%20Coaching" class="btn" style="width: 100%; text-align: center;">Join Coaching</a>
+                <!-- Preserving exact link -->
+                <a href="https://wa.me/918218377572?text=I%20am%20interested%20in%20Personal%20Coaching" class="plan-btn" style="background: var(--primary-gold); color: black;">Join Coaching</a>
             </div>
 
             <div class="plan-card">
@@ -290,15 +476,16 @@
                     <li>Complete Monthly Schedule.</li>
                     <li>Self-Paced Structure.</li>
                     <li>Scientific Drills.</li>
-                    <li class="limit" style="color: #777;">No Doubt Sessions.</li>
+                    <li class="limit">No Doubt Sessions.</li>
                 </ul>
-                <a href="https://wa.me/918218377572?text=I%20need%20Workout%20Plan%20PDF" class="btn" style="width: 100%; text-align: center; background: transparent; border: 1px solid var(--primary-gold); color: var(--primary-gold);">Get PDF</a>
+                <!-- Preserving exact link -->
+                <a href="https://wa.me/918218377572?text=I%20need%20Workout%20Plan%20PDF" class="plan-btn" style="background: transparent; border: 1px solid var(--primary-gold); color: var(--primary-gold);">Get PDF</a>
             </div>
         </div>
     </section>
 
-    <section id="reviews">
-        <div class="center-heading"><h2>Athlete Results</h2></div>
+    <section id="reviews" class="reveal">
+        <div class="center-heading" style="text-align: center;"><h2>Athlete Results</h2></div>
         <div class="reviews-container">
             <div class="review-card">
                 <p class="review-text">"Coach Bhupendra corrected my start technique just by watching my video. My 100m timing improved from 11.8s to 11.2s in 3 months."</p>
@@ -317,11 +504,14 @@
 
     <section id="contact" class="contact">
         <h2>Contact Us</h2>
-        <div style="border: 2px solid var(--primary-gold); display: inline-block; padding: 20px 40px; border-radius: 10px;">
+        <div class="contact-box">
             <p>Call or WhatsApp Coach Bhupendra</p>
+            <!-- Preserving exact number -->
             <a href="tel:8218377572" style="text-decoration: none;">
                 <span class="phone-number">📞 8218377572</span>
             </a>
+            <br>
+            <!-- Preserving exact link -->
             <a href="https://wa.me/918218377572" class="btn">Chat on WhatsApp</a>
         </div>
     </section>
@@ -330,5 +520,40 @@
         <p>&copy; 2025 Elite Track Athletics Academy. Designed for Champions.</p>
     </footer>
 
+    <!-- Scripts for Modern Interactivity -->
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const menuIcon = document.querySelector('.menu-toggle i');
+            
+            navLinks.classList.toggle('active');
+            
+            if(navLinks.classList.contains('active')){
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            } else {
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            }
+        }
+
+        // Scroll Reveal Animation
+        window.addEventListener('scroll', reveal);
+        function reveal(){
+            var reveals = document.querySelectorAll('.reveal');
+            for(var i = 0; i < reveals.length; i++){
+                var windowheight = window.innerHeight;
+                var revealtop = reveals[i].getBoundingClientRect().top;
+                var revealpoint = 150;
+                if(revealtop < windowheight - revealpoint){
+                    reveals[i].classList.add('active');
+                }
+                else{
+                    reveals[i].classList.remove('active');
+                }
+            }
+        }
+    </script>
 </body>
 </html>
